@@ -1,0 +1,10 @@
+{
+  "name": "standard41",
+  "version": "0.1.0",
+  "description": "Toy to help with learning the Standard 41' Surprise Minor",
+  "license": "GPL-2.0+",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bobwallis/Standard41.git"
+  }
+}

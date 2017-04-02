@@ -6,5 +6,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/bobwallis/Standard41.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

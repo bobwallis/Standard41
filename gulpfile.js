@@ -83,7 +83,7 @@ gulp.task( 'css', function() {
 
 
 gulp.task( 'img', function() {
-	gulp.src( ['src/img/androidicon.svg', 'src/img/appicon.svg', 'src/img/favicon.svg', 'src/img/left.svg', 'src/img/down.svg', 'src/img/right.svg', 'src/img/x.svg'] )
+	gulp.src( ['src/img/*.svg', 'src/img/*.png'] )
 		.pipe( imagemin() )
 		.pipe( gulp.dest( DEST+'img/' ) )
 		.pipe( zopfli() )

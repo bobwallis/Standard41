@@ -1,0 +1,73 @@
+#tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    user-select: none;
+    border: 1px solid @lightGrey;
+    border-radius: 3px;
+    margin: 0;
+    padding: 0;
+    height: 36px;
+    li {
+        line-height: 36px;
+        box-sizing: border-box;
+        list-style: none;
+        margin: 0;
+        padding: 0 5px;
+        text-align: center;
+        cursor: pointer;
+        border-right: 1px solid @lightGrey;
+        background-color: @lighterGrey;
+        font-size: 12px;
+        transition: background-color .2s cubic-bezier(0.23, 1, 0.32, 1);
+        &:last-child {
+            border-right: 0;
+        }
+        &.active, &:hover {
+            background-color: #FFF;
+        }
+        &.active {
+            font-weight: bold;
+        }
+    }
+}
+#tab_table, #tab_quiz, #tab_practice {
+        flex: 1 1 auto;
+}
+#tab_about, #tab_settings, #tab_github {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+}
+#tab_about {
+    background-image: url(../img/about.svg);
+}
+#tab_settings {
+    background-image: url(../img/settings.svg);
+}
+#tab_github {
+    background-image: url(../img/github.png);
+}
+
+#contents {
+    position: relative;
+    & > div {
+        display: block;
+        position: absolute;
+        transform: translateX(-100%) scale(0.9);
+        opacity: 0;
+        transition: transform .35s, opacity .35s;
+        transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    & > div.active {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    & > div.active ~ div {
+        transform: translateX(100%) scale(0.9);
+        opacity: 0;
+    }
+}

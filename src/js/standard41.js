@@ -5,5 +5,18 @@ require( ['jquery', 'lib/fittext'], function( $, fittext ) {
 	} );
 	
 	// Scale headers
-	$( 'h1' ).fitText( 1.2, { minFontSize: '32px', maxFontSize: '40px' } );
+	$( 'h1' ).fitText( 1.2, { minFontSize: '18px', maxFontSize: '28px' } );
+
+	// Tab bar
+	var allTabsAndContents = $( '#tabs > li, #contents > div' );
+	$('#tabs').on( 'click' , 'li', function( e ) {
+		var activeID = e.target.id.replace( /^tab_/, '' );
+		if( activeID === 'github' ) {
+			location.href = 'https://github.com/bobwallis/Standard41';
+		}
+		else {
+			allTabsAndContents.removeClass( 'active' );
+			$( '#tab_'+activeID+', #content_'+activeID ).addClass( 'active' );
+		}
+	} );
 } );

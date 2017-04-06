@@ -1,0 +1,95 @@
+
+#method_table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    text-align: center;
+    border: 1px solid @lightGrey;
+    col, tr, th, td {
+        border: 1px solid @lightGrey;
+    }
+    col.cambridge, col.london {
+        background-color: @lighterGrey;
+    }
+    col.head {
+        width: 140px;
+    }
+    col.le {
+        width: 80px;
+    }
+    col.cambridge, col.norwich, col.london, col.carlisle {
+        width: 100px;
+        min-width: 60px;
+    }
+    thead td:first-child {
+        text-align: right;
+    }
+    tbody th {
+        text-align: left;
+    }
+    th {
+        vertical-align: middle;
+        padding: 5px;
+    }
+    td {
+        vertical-align: middle;
+        padding: 0 2px;
+        a {
+            width: 100%;
+            padding: 5px 0;
+            display: inline-block;
+            background: none;
+        }
+    }
+}
+
+@media (max-width: 1040px) {
+    #method_table {
+        font-size: 11px;
+        th {
+            padding: 2px;
+        }
+        td {
+            padding: 0 1px;
+            a {
+                padding: 2px 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    #method_table {
+        font-size: 10.5px;
+    }
+}
+
+@media (max-width: 850px) {
+    #method_table {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 800px) {
+    #method_table {
+        font-size: 9.5px;
+    }
+}
+
+@media (max-width: 750px) {
+    #method_table {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 725px) {
+    #method_table {
+        font-size: 8.5px;
+    }
+}
+
+@media (max-width: 700px) {
+    #method_table {
+        font-size: 8px;
+    }
+}

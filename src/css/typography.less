@@ -1,8 +1,33 @@
 html, body {
     font-family: Roboto, sans-serif;
+    font-size: 16px;
 }
 
 h1 {
+    font-size: 28px;
     text-align: center;
     font-weight: 300;
+}
+
+p {
+    font-size: 16px;
+    line-height: 26px;
+}
+
+
+a {
+  text-decoration: none;
+  text-shadow: .03em 0 #FFF, -.03em 0 #FFF, 0 .03em #FFF, 0 -.03em #FFF, .06em 0 #FFF, -.06em 0 #FFF, .09em 0 #FFF, -.09em 0 #FFF, .12em 0 #FFF, -.12em 0 #FFF, .15em 0 #FFF, -.15em 0 #FFF;
+  background-image: linear-gradient(#FFF, #FFF), linear-gradient(#FFF, #FFF), linear-gradient(#A1C4D0, #A1C4D0);
+  background-size: .05em 1px, .05em 1px, 1px 1px;
+  background-repeat: no-repeat, no-repeat, repeat-x;
+  background-position: 0% 99%, 100% 99%, 0% 99%;
+  transition-property: color;
+  transition-duration: .4s;
+  &:link { color: #29404C; }
+  &:visited { color: #4C2940; }
+  &:active { color: #404C29; }
+  &::selection {
+    text-shadow: none;
+  }
 }

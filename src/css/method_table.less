@@ -5,8 +5,11 @@
     font-size: 12.5px;
     text-align: center;
     border: 1px solid @lightGrey;
-    col, tr, th, td {
-        border: 1px solid @lightGrey;
+    col {
+        border-right: 1px solid @lightGrey;
+    }
+    col.dot {
+        border-right: 1px dashed darken(@lightGrey,5%);
     }
     col.cambridge, col.london {
         background-color: @lighterGrey;
@@ -21,6 +24,12 @@
         width: 100px;
         min-width: 60px;
     }
+    tr {
+        border-bottom: 1px solid @lightGrey;
+    }
+    tr.dot {
+        border-bottom: 1px dashed darken(@lightGrey,5%);
+    }
     thead td:first-child {
         text-align: right;
     }
@@ -31,7 +40,7 @@
         vertical-align: middle;
         padding: 5px;
         &.minor {
-            color: #999;
+            color: @darkGrey;
         }
     }
     td {

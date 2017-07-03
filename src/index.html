@@ -55,7 +55,7 @@
         <div id="container">
             <header>
                 <h1>The 41 'Regular' Surprise Minor Methods</h1>
-				<ul id="tabs">
+				<ul id="tabs" class="tab_group">
 					<li id="tab_about" class="active" title="About"></li>
 					<li id="tab_table" title="Table of over / under works">Table</li>
 					<li id="tab_quiz" title="Quiz">Quiz</li>
@@ -204,7 +204,7 @@
 								<td>36</td>
 								<td></td>
 								<td></td>
-								<td data-method="ALlendale"><a target="_blank" href="https://rsw.me.uk/blueline/methods/view/Allendale_Surprise_Minor">Allendale</a></td>
+								<td data-method="Allendale"><a target="_blank" href="https://rsw.me.uk/blueline/methods/view/Allendale_Surprise_Minor">Allendale</a></td>
 								<td></td>
 								<td data-method="Coldstream"><a target="_blank" href="https://rsw.me.uk/blueline/methods/view/Coldstream_Surprise_Minor">Coldstream</a></td>
 								<td></td>
@@ -249,8 +249,76 @@
 				<div id="content_quiz" style="color:blue">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl lacus, pulvinar finibus felis et, vestibulum luctus erat. Nullam mollis accumsan justo eget aliquet. Praesent vitae magna imperdiet tellus euismod tincidunt nec varius nunc. Cras hendrerit suscipit porttitor. Donec consectetur nulla nec est sodales sollicitudin. Vestibulum nec nisl feugiat, tristique quam in, aliquam lacus. Phasellus finibus volutpat pellentesque. Quisque eu tellus ut libero scelerisque eleifend. Mauris mattis ipsum sit amet viverra efficitur. Aenean sollicitudin arcu quis elit condimentum, in commodo purus dictum. Maecenas dictum ante et lectus interdum, ac placerat sem ornare. Fusce ligula elit, pharetra nec consequat sed, imperdiet non mi. Proin laoreet nulla sed quam tempus, sed suscipit magna iaculis. quiz</p>
 				</div>
-				<div id="content_practice" style="color:green">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl lacus, pulvinar finibus felis et, vestibulum luctus erat. Nullam mollis accumsan justo eget aliquet. Praesent vitae magna imperdiet tellus euismod tincidunt nec varius nunc. Cras hendrerit suscipit porttitor. Donec consectetur nulla nec est sodales sollicitudin. Vestibulum nec nisl feugiat, tristique quam in, aliquam lacus. Phasellus finibus volutpat pellentesque. Quisque eu tellus ut libero scelerisque eleifend. Mauris mattis ipsum sit amet viverra efficitur. Aenean sollicitudin arcu quis elit condimentum, in commodo purus dictum. Maecenas dictum ante et lectus interdum, ac placerat sem ornare. Fusce ligula elit, pharetra nec consequat sed, imperdiet non mi. Proin laoreet nulla sed quam tempus, sed suscipit magna iaculis. practice</p>
+				<div id="content_practice">
+					<p>Choose whether ring a lead or course of a particular method, or random leads from all the methods.</p>
+					<div id="practice_chooser">
+						<ul class="tab_group">
+							<li class="active"><input type="radio" name="practice_chooser_type" id="practice_chooser_type_random" value="random" checked="checked" /><label for="practice_chooser_type_random">Random Leads</label></li>
+							<li><input type="radio" name="practice_chooser_type" id="practice_chooser_type_specific" value="specific" /><label for="practice_chooser_type_specific">Specific Method</label></li>
+						</ul>
+						<div id="practice_chooser_type_specific_extra">
+							<div id="practice_chooser_method_wrapper">
+								<select id="practice_chooser_method">
+									<option value="Allendale">Allendale</option>
+									<option value="Alnwick">Alnwick</option>
+									<option value="Annable's London">Annable's London</option>
+									<option value="Bacup">Bacup</option>
+									<option value="Bamborough">Bamborough</option>
+									<option value="Berwick">Berwick</option>
+									<option value="Beverley">Beverley</option>
+									<option value="Bourne">Bourne</option>
+									<option value="Cambridge">Cambridge</option>
+									<option value="Canterbury">Canterbury</option>
+									<option value="Carlisle">Carlisle</option>
+									<option value="Chester">Chester</option>
+									<option value="Coldstream">Coldstream</option>
+									<option value="Cunecastre">Cunecastre</option>
+									<option value="Durham">Durham</option>
+									<option value="Hexham">Hexham</option>
+									<option value="Hull">Hull</option>
+									<option value="Ipswich">Ipswich</option>
+									<option value="Kelso">Kelso</option>
+									<option value="Lightfoot">Lightfoot</option>
+									<option value="Lincoln">Lincoln</option>
+									<option value="London">London</option>
+									<option value="Morpeth">Morpeth</option>
+									<option value="Munden">Munden</option>
+									<option value="Netherseale">Netherseale</option>
+									<option value="Newcastle">Newcastle</option>
+									<option value="Norfolk">Norfolk</option>
+									<option value="Northumberland">Northumberland</option>
+									<option value="Norwich">Norwich</option>
+									<option value="Primrose">Primrose</option>
+									<option value="Rossendale">Rossendale</option>
+									<option value="Sandiacre">Sandiacre</option>
+									<option value="Stamford">Stamford</option>
+									<option value="Surfleet">Surfleet</option>
+									<option value="Warkworth">Warkworth</option>
+									<option value="Wearmouth">Wearmouth</option>
+									<option value="Wells">Wells</option>
+									<option value="Westminster">Westminster</option>
+									<option value="Whitley">Whitley</option>
+									<option value="Wooler">Wooler</option>
+									<option value="York">York</option>
+								</select>
+							</div>
+							<h4>Place Bell</h4>
+							<ul class="tab_group notation">
+								<li class="active"><input type="radio" name="practice_chooser_bell" id="practice_chooser_bell_2" value="2" checked="checked" /><label for="practice_chooser_bell_2">2</label></li>
+								<li><input type="radio" name="practice_chooser_bell" id="practice_chooser_bell_3" value="3" /><label for="practice_chooser_bell_3">3</label></li>
+								<li><input type="radio" name="practice_chooser_bell" id="practice_chooser_bell_4" value="4" /><label for="practice_chooser_bell_4">4</label></li>
+								<li><input type="radio" name="practice_chooser_bell" id="practice_chooser_bell_5" value="5" /><label for="practice_chooser_bell_5">5</label></li>
+								<li><input type="radio" name="practice_chooser_bell" id="practice_chooser_bell_6" value="6" /><label for="practice_chooser_bell_6">6</label></li>
+							</ul>
+							<ul class="tab_group">
+								<li class="active"><input type="radio" name="practice_chooser_leadOrCourse" id="practice_chooser_leadOrCourse_lead" value="lead" checked="checked" /><label for="practice_chooser_leadOrCourse_lead">Single Lead</label></li>
+								<li><input type="radio" name="practice_chooser_leadOrCourse" id="practice_chooser_leadOrCourse_course" value="course" /><label for="practice_chooser_leadOrCourse_course">Plain Course</label></li>
+							</ul>
+						</div>
+						<div id="practice_chooser_go">
+							<button>Go</button>
+						</div>
+					</div>
 				</div>
 				<div id="content_settings" style="color:orangered">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl lacus, pulvinar finibus felis et, vestibulum luctus erat. Nullam mollis accumsan justo eget aliquet. Praesent vitae magna imperdiet tellus euismod tincidunt nec varius nunc. Cras hendrerit suscipit porttitor. Donec consectetur nulla nec est sodales sollicitudin. Vestibulum nec nisl feugiat, tristique quam in, aliquam lacus. Phasellus finibus volutpat pellentesque. Quisque eu tellus ut libero scelerisque eleifend. Mauris mattis ipsum sit amet viverra efficitur. Aenean sollicitudin arcu quis elit condimentum, in commodo purus dictum. Maecenas dictum ante et lectus interdum, ac placerat sem ornare. Fusce ligula elit, pharetra nec consequat sed, imperdiet non mi. Proin laoreet nulla sed quam tempus, sed suscipit magna iaculis. settings</p>
@@ -259,6 +327,7 @@
         </div>
 		<div id="overlay"></div>
 		<div id="blueline_overflow"><div id="blueline"></div></div>
+		<div id="practice_overflow"><div class="practice_container" id="practice_interface"></div></div>
 		<script src="js/standard41.js"></script>
 	</body>
 </html>

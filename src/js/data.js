@@ -116,7 +116,7 @@ define( ['lib/GridOptionsBuilder', 'lib/Grid'], function( GridOptionsBuilder, Gr
             name:     'Allendale Surprise Minor',
             notation: 'x34x14x12x36.12x12.36,12',
             over:     'Norwich',
-            under:    'Cambridge',
+            under:    'Allendale',
             le:       '12',
             hl:       '36'
         },

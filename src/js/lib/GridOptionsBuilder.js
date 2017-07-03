@@ -237,7 +237,7 @@ define( ['jquery', './PlaceNotation', './MeasureCanvasText'], function( $, Place
 					} );
 				}
 			} );
-			return thisgridOptionscallsnumbers
+			return thisgridOptionscallsnumbers;
 		};
 
 		// 'Diagrams'
@@ -307,7 +307,7 @@ define( ['jquery', './PlaceNotation', './MeasureCanvasText'], function( $, Place
 					} );
 				}
 			} );
-			return thisgridOptionscallsdiagrams
+			return thisgridOptionscallsdiagrams;
 		};
 
 		// 'Lines'
@@ -362,7 +362,7 @@ define( ['jquery', './PlaceNotation', './MeasureCanvasText'], function( $, Place
 					} );
 				}
 			} );
-			return thisgridOptionscallslines
+			return thisgridOptionscallslines;
 		};
 
 		// Grid
@@ -419,7 +419,7 @@ define( ['jquery', './PlaceNotation', './MeasureCanvasText'], function( $, Place
 					} );
 				}
 			} );
-			return thisgridOptionscallsgrid
+			return thisgridOptionscallsgrid;
 		};
 
 		return this;

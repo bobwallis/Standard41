@@ -36,7 +36,7 @@ define( ['Modernizr'], function( Modernizr ) {
 				}
 			}
 			keys.forEach( function( key ) {
-				localStorage.removeItem( key )
+				localStorage.removeItem( key );
 			} );
 		};
 		LocalStorage.getSetting = function( key, defaultSetting ) {
@@ -59,7 +59,7 @@ define( ['Modernizr'], function( Modernizr ) {
 				}
 			}
 			keys.forEach( function( key ) {
-				localStorage.removeItem( key )
+				localStorage.removeItem( key );
 			} );
 		};
 

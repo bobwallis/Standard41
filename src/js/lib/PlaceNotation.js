@@ -305,7 +305,7 @@ define( function() {
 			while( i-- > stage - 3 ) { row[i] = 1 + (i-mid)*2; }
 			row[i] = row[i+1]-1;
 			row[--i] = row[i+1]+2;
-			if( i ) { row[--i] = row[i+1]+2 };
+			if( i ) { row[--i] = row[i+1]+2; }
 			while( i-- ) { row[i] = i; }
 			return row;
 		},

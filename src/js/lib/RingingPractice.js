@@ -195,7 +195,7 @@ define( ['./PlaceNotation', './Canvas', './MeasureCanvasTextOffset'], function( 
 					// Treat the start and resume buttons specially
 					if( currentRow > 0 ) {
 						buttonElements[1].value = 'Restart';
-						buttonElements[1].style.display = 'inline-block';
+						buttonElements[0].style.display = 'inline-block';
 					}
 					if( currentRow === 0 || finished ) {
 						buttonElements[0].style.display = 'none';

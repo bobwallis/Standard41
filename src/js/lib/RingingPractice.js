@@ -117,7 +117,7 @@ define( ['./PlaceNotation', './Canvas', './MeasureCanvasTextOffset'], function( 
 			var pause = document.createElement( 'div' );
 			pause.className = 'practice_pause';
 			container.appendChild( pause );
-			pauseFunction = function() {
+			var pauseFunction = function() {
 				going = false;
 				canvasPaused = true;
 				buttons.show();
@@ -237,7 +237,7 @@ define( ['./PlaceNotation', './Canvas', './MeasureCanvasTextOffset'], function( 
 		})();
 
 
-		// Cache some resuable images to avoid excessive use of slow fillText calls in the drawing function that's meant to run at 60fps
+		// Cache some reusable images to avoid excessive use of slow fillText calls in the drawing function that's meant to run at 60fps
 		if( options.hbIndicator ) {
 			var fillTextCache_hbIndicator = function( char ) {
 				var cacheCanvas = new Canvas( {

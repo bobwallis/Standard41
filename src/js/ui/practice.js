@@ -11,7 +11,7 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
     var $practice_chooser_type_specific_extra = $( '#practice_chooser_type_specific_extra' );
 	$( '#content_practice ul.tab_group input[type=radio]' ).on( 'change', function( e ) {
         // Generic change code
-        $target = $( e.target );
+        var $target = $( e.target );
         $target.parent().siblings().removeClass( 'active' );
         $target.parent().addClass( 'active' );
 
@@ -37,7 +37,7 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
 		e.stopPropagation();
         
         var option_type = $( 'input[name="practice_chooser_type"]:checked' ).val(),
-            option_method, option_placeStart, option_leadOrCourse, option_title;
+            option_method, option_placeStart, option_leadOrCourse, option_title, option_notation, option_overlayMessages, option_thatsAll, option_rows;
 
         // Read options
         if( option_type === 'specific' ) {
@@ -59,7 +59,7 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
             option_overlayMessages = {};
             option_thatsAll = "That's all";
             option_rows = 24*250;
-            for( i = 0; i < 250; ++i ) {
+            for( var i = 0; i < 250; ++i ) {
                 option_method = $( '#practice_chooser_method option:eq('+Math.floor(Math.random() * 41)+')' ).val();
                 option_notation = option_notation.concat( PlaceNotation.parse( PlaceNotation.expand( data[option_method].notation, 6 ), 6 ) );
                 option_overlayMessages[(i*24)+1] = data[option_method].name.replace( ' Surprise Minor', '' );

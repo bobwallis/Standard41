@@ -45,9 +45,9 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
             option_method = $( '#practice_chooser_method' ).val();
             option_placeStart = parseInt( $( 'input[name="practice_chooser_bell"]:checked' ).val(), 10 );
             option_leadOrCourse = $( 'input[name="practice_chooser_leadOrCourse"]:checked' ).val();
-            option_title = (option_leadOrCourse === 'course')? data[option_method].name : option_placeStart+(option_placeStart%10===1&&option_placeStart%100!==11?'st':option_placeStart%10===2&&option_placeStart%100!==12?'nd':option_placeStart%10===3&&option_placeStart%100!==13?'rd':'th')+'s place '+data[option_method].name.replace( ' Surprise Minor', '' );
+            option_title = (option_leadOrCourse === 'course')? data[option_method].name : addOrdinalIndicator(option_placeStart)+'s place '+data[option_method].name.replace( ' Surprise Minor', '' );
             option_notation = data[option_method].notation;
-            option_overlayMessages = { 0: (option_leadOrCourse === 'course')? data[option_method].name : addOrdinalIndicator(option_placeStart)+'s place '+data[option_method].name.replace( ' Surprise Minor', '' ) };
+            option_overlayMessages = { 0: option_title };
             option_thatsAll = (option_leadOrCourse === 'course')? "That's all" : ' ';
             option_rows = (option_leadOrCourse === 'course')? 120 : 24;
         }

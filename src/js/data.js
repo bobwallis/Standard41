@@ -157,8 +157,8 @@ define( ['lib/GridOptionsBuilder', 'lib/Grid'], function( GridOptionsBuilder, Gr
             notation: 'x34x14x12x36.14x12.36,16',
             over:     'Norwich',
             under:    'Surfleet',
-            le:       '36',
-            hl:       '16'
+            le:       '16',
+            hl:       '36'
         },
         Norwich: {
             name:     'Norwich Surprise Minor',
@@ -198,7 +198,7 @@ define( ['lib/GridOptionsBuilder', 'lib/Grid'], function( GridOptionsBuilder, Gr
             over:     'London',
             under:    'Cunecastre',
             le:       '12',
-            hl:       '16'
+            hl:       '36'
         },
         Lincoln: {
             name:     'Lincoln Surprise Minor',
@@ -270,7 +270,7 @@ define( ['lib/GridOptionsBuilder', 'lib/Grid'], function( GridOptionsBuilder, Gr
             over:     'Carlisle',
             under:    'Beverley',
             le:       '12',
-            hl:       '36'
+            hl:       '56'
         },
         Sandiacre: {
             name:     'Sandiacre Surprise Minor',

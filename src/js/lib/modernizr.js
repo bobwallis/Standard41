@@ -1,5 +1,5 @@
 /*!
- * modernizr v3.4.0
+ * modernizr v3.6.0
  * Build https://modernizr.com/download?-canvas-canvastext-fontface-localstorage-hasevent-prefixed-prefixes-setclasses-testallprops-testprop-teststyles-dontmin
  *
  * Copyright (c)
@@ -26,6 +26,16 @@
   var classes = [];
   
 
+  /**
+   * docElement is a convenience wrapper to grab the root element of the document
+   *
+   * @access private
+   * @returns {HTMLElement|SVGElement} The root element of the document
+   */
+
+  var docElement = document.documentElement;
+  
+
   var tests = [];
   
 
@@ -39,7 +49,7 @@
 
   var ModernizrProto = {
     // The current version, dummy
-    _version: '3.4.0',
+    _version: '3.6.0',
 
     // Any settings that don't work as separate modules
     // can go in here as configuration.
@@ -263,16 +273,6 @@
     }
   }
   ;
-
-  /**
-   * docElement is a convenience wrapper to grab the root element of the document
-   *
-   * @access private
-   * @returns {HTMLElement|SVGElement} The root element of the document
-   */
-
-  var docElement = document.documentElement;
-  
 
   /**
    * A convenience helper to check if the document we are running in is an SVG document
@@ -782,6 +782,28 @@ Detects support for the text APIs for `<canvas>` elements.
   var omPrefixes = 'Moz O ms Webkit';
   
 
+  /**
+   * List of JavaScript DOM values used for tests
+   *
+   * @memberof Modernizr
+   * @name Modernizr._domPrefixes
+   * @optionName Modernizr._domPrefixes
+   * @optionProp domPrefixes
+   * @access public
+   * @example
+   *
+   * Modernizr._domPrefixes is exactly the same as [_prefixes](#modernizr-_prefixes), but rather
+   * than kebab-case properties, all properties are their Capitalized variant
+   *
+   * ```js
+   * Modernizr._domPrefixes === [ "Moz", "O", "ms", "Webkit" ];
+   * ```
+   */
+
+  var domPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.toLowerCase().split(' ') : []);
+  ModernizrProto._domPrefixes = domPrefixes;
+  
+
   var cssomPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.split(' ') : []);
   ModernizrProto._cssomPrefixes = cssomPrefixes;
   
@@ -851,28 +873,6 @@ Detects support for the text APIs for `<canvas>` elements.
 
   ModernizrProto.atRule = atRule;
 
-  
-
-  /**
-   * List of JavaScript DOM values used for tests
-   *
-   * @memberof Modernizr
-   * @name Modernizr._domPrefixes
-   * @optionName Modernizr._domPrefixes
-   * @optionProp domPrefixes
-   * @access public
-   * @example
-   *
-   * Modernizr._domPrefixes is exactly the same as [_prefixes](#modernizr-_prefixes), but rather
-   * than kebab-case properties, all properties are their Capitalized variant
-   *
-   * ```js
-   * Modernizr._domPrefixes === [ "Moz", "O", "ms", "Webkit" ];
-   * ```
-   */
-
-  var domPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.toLowerCase().split(' ') : []);
-  ModernizrProto._domPrefixes = domPrefixes;
   
 
   /**
@@ -1174,6 +1174,49 @@ Detects support for the text APIs for `<canvas>` elements.
   
 
   /**
+   * testAllProps determines whether a given CSS property is supported in the browser
+   *
+   * @memberof Modernizr
+   * @name Modernizr.testAllProps
+   * @optionName Modernizr.testAllProps()
+   * @optionProp testAllProps
+   * @access public
+   * @function testAllProps
+   * @param {string} prop - String naming the property to test (either camelCase or kebab-case)
+   * @param {string} [value] - String of the value to test
+   * @param {boolean} [skipValueTest=false] - Whether to skip testing that the value is supported when using non-native detection
+   * @example
+   *
+   * testAllProps determines whether a given CSS property, in some prefixed form,
+   * is supported by the browser.
+   *
+   * ```js
+   * testAllProps('boxSizing')  // true
+   * ```
+   *
+   * It can optionally be given a CSS value in string form to test if a property
+   * value is valid
+   *
+   * ```js
+   * testAllProps('display', 'block') // true
+   * testAllProps('display', 'penguin') // false
+   * ```
+   *
+   * A boolean can be passed as a third parameter to skip the value check when
+   * native detection (@supports) isn't available.
+   *
+   * ```js
+   * testAllProps('shapeOutside', 'content-box', true);
+   * ```
+   */
+
+  function testAllProps(prop, value, skipValueTest) {
+    return testPropsAll(prop, undefined, undefined, value, skipValueTest);
+  }
+  ModernizrProto.testAllProps = testAllProps;
+  
+
+  /**
    * prefixed returns the prefixed or nonprefixed property name variant of your input
    *
    * @memberof Modernizr
@@ -1255,49 +1298,6 @@ Detects support for the text APIs for `<canvas>` elements.
     }
   };
 
-  
-
-  /**
-   * testAllProps determines whether a given CSS property is supported in the browser
-   *
-   * @memberof Modernizr
-   * @name Modernizr.testAllProps
-   * @optionName Modernizr.testAllProps()
-   * @optionProp testAllProps
-   * @access public
-   * @function testAllProps
-   * @param {string} prop - String naming the property to test (either camelCase or kebab-case)
-   * @param {string} [value] - String of the value to test
-   * @param {boolean} [skipValueTest=false] - Whether to skip testing that the value is supported when using non-native detection
-   * @example
-   *
-   * testAllProps determines whether a given CSS property, in some prefixed form,
-   * is supported by the browser.
-   *
-   * ```js
-   * testAllProps('boxSizing')  // true
-   * ```
-   *
-   * It can optionally be given a CSS value in string form to test if a property
-   * value is valid
-   *
-   * ```js
-   * testAllProps('display', 'block') // true
-   * testAllProps('display', 'penguin') // false
-   * ```
-   *
-   * A boolean can be passed as a third parameter to skip the value check when
-   * native detection (@supports) isn't available.
-   *
-   * ```js
-   * testAllProps('shapeOutside', 'content-box', true);
-   * ```
-   */
-
-  function testAllProps(prop, value, skipValueTest) {
-    return testPropsAll(prop, undefined, undefined, value, skipValueTest);
-  }
-  ModernizrProto.testAllProps = testAllProps;
   
 
   // Run each test

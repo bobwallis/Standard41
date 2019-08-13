@@ -22,7 +22,7 @@ define( ['jquery', './overlay', '../data', '../lib/shuffle'], function( $, overl
 
         shuffle(overWorks);
         var method_overWorks = overWorks.slice(0, 3);
-        if( method_overWorks.indexOf( method.over ) !== -1 ) {
+        if( method_overWorks.indexOf( method.over ) === -1 ) {
             method_overWorks[Math.round(0.5 + (Math.random() * 3))-1] = method.over;
         }
         $quiz_over.empty();
@@ -32,7 +32,7 @@ define( ['jquery', './overlay', '../data', '../lib/shuffle'], function( $, overl
 
         shuffle(underWorks);
         var method_underWorks = underWorks.slice(0, 3);
-        if( method_underWorks.includes( method.under ) === false ) {
+        if( method_underWorks.indexOf( method.under ) === -1 ) {
             method_underWorks[Math.round(0.5 + (Math.random() * 3))-1] = method.under;
         }
         $quiz_under.empty();

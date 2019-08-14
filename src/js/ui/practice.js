@@ -23,7 +23,7 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
             }
             else {
                 $practice_chooser_type_specific_extra.removeClass( 'active' );
-                window.setTimeout( function() { $practice_chooser_type_specific_extra.css( 'visibility', 'hidden' ); }, 425 );
+                window.setTimeout( function() { $practice_chooser_type_specific_extra.css( 'visibility', 'hidden' ); }, 400 );
             }
         }
     } );

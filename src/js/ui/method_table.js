@@ -58,7 +58,7 @@ define( ['jquery', '../data', './overlay'], function( $, data, overlay ) {
 		window.setTimeout( function() {
 			$blueline.hide();
 			$blueline_overflow.hide();
-		}, 425 );
+		}, 400 );
 	};
 	$( '#method_table' ).on( 'click', 'a, td', openBlueline );
 	$( '#overlay, #blueline_overflow' ).on( 'click', closeBlueline );

@@ -11,7 +11,7 @@ define( ['jquery'], function( $ ) {
             $overlay.removeClass( 'show' );
             window.setTimeout( function() {
                 $overlay.hide();
-            }, 425 );
+            }, 400 );
         }
     };
 } );

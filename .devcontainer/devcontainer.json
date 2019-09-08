@@ -1,0 +1,7 @@
+{
+	"name": "Standard 41",
+	"dockerFile": "Dockerfile",
+	"postCreateCommand": "npm install && gulp",
+	"runArgs": [ "-u", "1000" ],
+	"extensions": ["eg2.vscode-npm-script", "codezombiech.gitignore", "mrmlnc.vscode-less", "github.vscode-pull-request-github"]
+}

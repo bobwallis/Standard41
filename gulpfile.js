@@ -2,15 +2,12 @@ var DEST = './dist/';
 var gulp = require( 'gulp' );
 var plumber         = require( 'gulp-plumber' );
 var rename          = require( 'gulp-rename' );
-var concat          = require( 'gulp-concat');
-var zopfli          = require( 'gulp-zopfli' );
 var es              = require( 'event-stream' );
 var svg2png         = require( 'gulp-svg2png' );
 var less            = require( 'gulp-less' );
 var autoprefixer    = require( 'gulp-autoprefixer' );
 var cleanCSS        = require( 'gulp-clean-css' );
 var imagemin        = require( 'gulp-imagemin' );
-var imagemin_zopfli = require( 'imagemin-zopfli' );
 var requirejs       = require( 'gulp-requirejs' );
 var amdclean        = require( 'gulp-amdclean' );
 var uglify          = require( 'gulp-uglify' );
@@ -29,7 +26,7 @@ gulp.task( 'appicon', function() {
 	var tasks = [70, 144, 150, 152, 180, 310].map( function( size ) {
 		return gulp.src( 'src/img/appicon.svg' )
 			.pipe( svg2png( size/63 ) )
-			.pipe( imagemin( { use: [imagemin_zopfli()] } ) )
+			.pipe( imagemin() )
 			.pipe( rename( function( path ) {
 				path.basename += '-'+size;
 			} ) )
@@ -43,7 +40,7 @@ gulp.task( 'androidicon', function() {
 	var tasks = [192, 512].map( function( size ) {
 		return gulp.src( 'src/img/androidicon.svg' )
 			.pipe( svg2png( size/192 ) )
-			.pipe( imagemin( { use: [imagemin_zopfli()] } ) )
+			.pipe( imagemin() )
 			.pipe( rename( function( path ) {
 				path.basename += '-'+size;
 			} ) )
@@ -77,8 +74,6 @@ gulp.task( 'css', function() {
 		.pipe( rename( 'standard41.css' ) )
 		.pipe( cleanCSS( { keepSpecialComments: 0 } ) )
 		.pipe( gulp.dest( DEST+'css/' ) )
-		.pipe( zopfli() )
-		.pipe( gulp.dest( DEST+'css/' ) );
 } );
 
 
@@ -86,8 +81,6 @@ gulp.task( 'img', function() {
 	gulp.src( ['src/img/*.svg', 'src/img/*.png'] )
 		.pipe( imagemin() )
 		.pipe( gulp.dest( DEST+'img/' ) )
-		.pipe( zopfli() )
-		.pipe( gulp.dest( DEST+'img/' ) );
 } );
 
 
@@ -118,8 +111,6 @@ gulp.task( 'js', function() {
 		.pipe( uglify() )
 		.pipe( sourcemaps.write( '.' ) )
 		.pipe( gulp.dest( DEST+'js/' ) )
-		.pipe( zopfli() )
-		.pipe( gulp.dest( DEST+'js/' ) );
 } );
 
 
@@ -135,8 +126,6 @@ gulp.task( 'html', function() {
 		.pipe( uglifyInline() )
 		.pipe( htmlmin( { removeComments: true, collapseWhitespace: true } ) )
 		.pipe( gulp.dest( DEST ) )
-		.pipe( zopfli() )
-		.pipe( gulp.dest( DEST ) );
 } );
 
 

@@ -1,16 +1,16 @@
-define( ['jquery'], function( $ ) {
-	var $overlay  = $( '#overlay' );
+define( function() {
+	var overlay  = document.getElementById( 'overlay' );
     return {
         show: function() {
-            $overlay.show();
+            overlay.style.display = 'block';
 			window.requestAnimationFrame( function() {
-				$overlay.addClass( 'show' );
+				overlay.className = 'show';
 			} );
         },
         hide: function() {
-            $overlay.removeClass( 'show' );
+            overlay.className = '';
             window.setTimeout( function() {
-                $overlay.hide();
+                overlay.style.display = 'none';
             }, 400 );
         }
     };

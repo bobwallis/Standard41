@@ -17,8 +17,8 @@ define( ['jquery', './overlay', '../data', '../lib/shuffle'], function( $, overl
 
         $quiz_testMethod.html( method.short_name );
 
-        $quiz_le2.data( 'answer', method.le === '12' ).removeClass( 'active disabled' );
-        $quiz_le6.data( 'answer', method.le === '16' ).removeClass( 'active disabled' );
+        $quiz_le2.data( 'answer', method.le === '12' ).removeClass( 'correct disabled' );
+        $quiz_le6.data( 'answer', method.le === '16' ).removeClass( 'correct disabled' );
 
         shuffle(overWorks);
         var method_overWorks = overWorks.slice(0, 3);
@@ -40,9 +40,9 @@ define( ['jquery', './overlay', '../data', '../lib/shuffle'], function( $, overl
             $quiz_under.append( '<li>'+e+'</li>' ).children().last().data( 'answer', e === method.under);
         } );
 
-        $quiz_hl16.data( 'answer', method.hl === '16' ).removeClass( 'active disabled' );
-        $quiz_hl36.data( 'answer', method.hl === '36' ).removeClass( 'active disabled' );
-        $quiz_hl56.data( 'answer', method.hl === '56' ).removeClass( 'active disabled' );
+        $quiz_hl16.data( 'answer', method.hl === '16' ).removeClass( 'correct disabled' );
+        $quiz_hl36.data( 'answer', method.hl === '36' ).removeClass( 'correct disabled' );
+        $quiz_hl56.data( 'answer', method.hl === '56' ).removeClass( 'correct disabled' );
     };
     generateQuestion();
 
@@ -50,13 +50,13 @@ define( ['jquery', './overlay', '../data', '../lib/shuffle'], function( $, overl
         $target_li = $( e.target ).closest( 'li' );
         if( $target_li.length > 0 ) {
             if( $target_li.data('answer') === true ) {
-                $target_li.addClass( 'active' ).data( 'answer', undefined )
+                $target_li.addClass( 'correct' ).data( 'answer', undefined )
                     .siblings().addClass( 'disabled' ).data( 'answer', undefined );
             }
             else if( $target_li.data('answer') === false ) {
                 $target_li.addClass( 'disabled' ).data( 'answer', undefined );
             }
-            if( $( '#content_quiz li.active' ).length === 4 ) {
+            if( $( '#content_quiz li.correct' ).length === 4 ) {
                 generateQuestion();
             }
             e.stopPropagation();

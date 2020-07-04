@@ -144,8 +144,8 @@ define( ['lib/GridOptionsBuilder', 'lib/Grid'], function( GridOptionsBuilder, Gr
             le:       '12',
             hl:       '16'
         },
-        "Annable\'s London": {
-            name:     "Annable\'s London Surprise Minor",
+        "Annable's London": {
+            name:     "Annable's London Surprise Minor",
             notation: 'x34x14x12x36x14x36,16',
             over:     'Norwich',
             under:    'Cambridge',
@@ -347,6 +347,6 @@ define( ['lib/GridOptionsBuilder', 'lib/Grid'], function( GridOptionsBuilder, Gr
             data[m].short_name  = data[m].name.split(' ')[0];
         }
     }
-    
+
     return data;
 } );

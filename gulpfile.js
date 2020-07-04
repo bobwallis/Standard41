@@ -1,28 +1,28 @@
 var DEST = './dist/';
-var gulp = require( 'gulp' );
-var plumber         = require( 'gulp-plumber' );
-var rename          = require( 'gulp-rename' );
-var es              = require( 'event-stream' );
-var svg2png         = require( 'gulp-svg2png' );
-var less            = require( 'gulp-less' );
-var autoprefixer    = require( 'gulp-autoprefixer' );
-var cleanCSS        = require( 'gulp-clean-css' );
-var imagemin        = require( 'gulp-imagemin' );
-var requirejs       = require( 'gulp-requirejs' );
-var amdclean        = require( 'gulp-amdclean' );
-var uglify          = require( 'gulp-uglify' );
-var uglifyInline    = require( 'gulp-uglify-inline' );
-var typogr          = require( 'gulp-typogr' );
-var hypher          = require( 'gulp-hypher' );
-var h_pattern       = require( 'hyphenation.en-gb' );
-var htmlmin         = require( 'gulp-htmlmin' );
-var sourcemaps      = require( 'gulp-sourcemaps' );
+
+var gulp         = require( 'gulp' );
+var plumber      = require( 'gulp-plumber' );
+var rename       = require( 'gulp-rename' );
+var mergeStream  = require( 'merge-stream' );
+var brotli       = require( 'gulp-brotli' );
+var gzip         = require( 'gulp-gzip' );
+var svg2png      = require( 'gulp-svg2png' );
+var less         = require( 'gulp-less' );
+var autoprefixer = require( 'gulp-autoprefixer' );
+var cleanCSS     = require( 'gulp-clean-css' );
+var imagemin     = require( 'gulp-imagemin' );
+var requirejs    = require( 'gulp-requirejs' );
+var amdclean     = require( 'gulp-amdclean' );
+var uglify       = require( 'gulp-uglify' );
+var uglifyInline = require( 'gulp-uglify-inline' );
+var typogr       = require( 'gulp-typogr' );
+var hypher       = require( 'gulp-hypher' );
+var h_pattern    = require( 'hyphenation.en-gb' );
+var htmlmin      = require( 'gulp-htmlmin' );
+var sourcemaps   = require( 'gulp-sourcemaps' );
 
 
-gulp.task( 'default', ['appicon', 'androidicon', 'img', 'favicon', 'fonts', 'css', 'js', 'html'], function() {} );
-
-
-gulp.task( 'appicon', function() {
+function appicon() {
 	var tasks = [70, 144, 150, 152, 180, 310].map( function( size ) {
 		return gulp.src( 'src/img/appicon.svg' )
 			.pipe( svg2png( size/63 ) )
@@ -32,11 +32,11 @@ gulp.task( 'appicon', function() {
 			} ) )
 			.pipe( gulp.dest( DEST+'img/' ) );
 	} );
-	return es.merge.apply( null, tasks );
-} );
+	return mergeStream.apply( null, tasks );
+};
 
 
-gulp.task( 'androidicon', function() {
+function androidicon() {
 	var tasks = [192, 512].map( function( size ) {
 		return gulp.src( 'src/img/androidicon.svg' )
 			.pipe( svg2png( size/192 ) )
@@ -46,46 +46,46 @@ gulp.task( 'androidicon', function() {
 			} ) )
 			.pipe( gulp.dest( DEST+'img/' ) );
 	} );
-	return es.merge.apply( null, tasks );
-} );
+	return mergeStream.apply( null, tasks );
+};
 
 
-gulp.task( 'favicon', function() {
-	gulp.src( 'src/img/favicon.ico' )
+function favicon() {
+	return gulp.src( 'src/img/favicon.ico' )
 		.pipe( gulp.dest( DEST ) );
-} );
+};
 
 
-gulp.task( 'fonts', function() {
-	gulp.src( 'src/fonts/*' )
+function fonts() {
+	return gulp.src( 'src/fonts/*' )
 		.pipe( gulp.dest( DEST+'fonts/' ) );
-} );
+};
 
 
-gulp.task( 'css', function() {
-	gulp.src( 'src/css/_.less' )
+function css() {
+	return gulp.src( 'src/css/_.less' )
 		.pipe( plumber( { errorHandler: function ( err ) {
 			console.log(err);
 			this.emit('end');
 			}
 		} ) )
 		.pipe( less() )
-		.pipe( autoprefixer( { browsers: ['last 2 versions'] } ) )
+		.pipe( autoprefixer() )
 		.pipe( rename( 'standard41.css' ) )
 		.pipe( cleanCSS( { keepSpecialComments: 0 } ) )
 		.pipe( gulp.dest( DEST+'css/' ) )
-} );
+};
 
 
-gulp.task( 'img', function() {
-	gulp.src( ['src/img/*.svg', 'src/img/*.png'] )
+function img() {
+	return gulp.src( ['src/img/*.svg', 'src/img/*.png'] )
 		.pipe( imagemin() )
 		.pipe( gulp.dest( DEST+'img/' ) )
-} );
+};
 
 
-gulp.task( 'js', function() {
-	requirejs( {
+function js() {
+	return requirejs( {
 		baseUrl: 'src/js',
 		include: ['standard41'],
 		mainConfigFile: 'src/js/standard41.js',
@@ -111,11 +111,11 @@ gulp.task( 'js', function() {
 		.pipe( uglify() )
 		.pipe( sourcemaps.write( '.' ) )
 		.pipe( gulp.dest( DEST+'js/' ) )
-} );
+};
 
 
-gulp.task( 'html', function() {
-	gulp.src( ['src/index.html'] )
+function html() {
+	return gulp.src( ['src/index.html'] )
 		.pipe( plumber( { errorHandler: function ( err ) {
 			console.log(err);
 			this.emit('end');
@@ -126,13 +126,29 @@ gulp.task( 'html', function() {
 		.pipe( uglifyInline() )
 		.pipe( htmlmin( { removeComments: true, collapseWhitespace: true } ) )
 		.pipe( gulp.dest( DEST ) )
-} );
+};
 
 
-gulp.task( 'watch', function() {
-	gulp.watch( ['src/img/appicon.svg'], ['appicon'] );
-	gulp.watch( ['src/img/favicon.*'], ['favicon'] );
-	gulp.watch( ['src/css/**/*.less', 'src/css/**/*.css'], ['css'] );
-	gulp.watch( ['src/js/**/*.js'], ['js'] );
-	gulp.watch( ['src/**/*.html'], ['html'] );
-} );
+function compressBrotliAndGzip() {
+	return mergeStream(
+		gulp.src( [DEST+'/**/*.svg', DEST+'/**/*.html', DEST+'/**/*.js', DEST+'/**/*.css', DEST+'/**/*.xml'] )
+			.pipe( brotli() )
+			.pipe( gulp.dest( DEST+'/' ) ),
+		gulp.src( [DEST+'/**/*.svg', DEST+'/**/*.html', DEST+'/**/*.js', DEST+'/**/*.css', DEST+'/**/*.xml'] )
+			.pipe( gzip({ gzipOptions: { level: 9 } }) )
+			.pipe( gulp.dest( DEST+'/' ) )
+	);
+};
+
+
+function watch() {
+	gulp.watch( ['src/img/appicon.svg'], appicon );
+	gulp.watch( ['src/img/favicon.*'], favicon );
+	gulp.watch( ['src/css/**/*.less', 'src/css/**/*.css'], css );
+	gulp.watch( ['src/js/**/*.js'], js );
+	gulp.watch( ['src/**/*.html'], html );
+};
+
+
+exports.default = gulp.series( gulp.parallel( appicon, androidicon, img, favicon, fonts, css, js, html ), compressBrotliAndGzip );
+exports.watch = watch;

@@ -344,7 +344,7 @@ define( ['lib/GridOptionsBuilder', 'lib/Grid'], function( GridOptionsBuilder, Gr
             delete leadOptions.sideNotation;
             data[m].grid_course = new Grid( courseOptions );
             data[m].grid_lead   = new Grid( leadOptions );
-            data[m].short_name  = data[m].name.split(' ')[0];
+            data[m].short_name  = m;
         }
     }
 

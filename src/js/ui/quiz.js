@@ -1,16 +1,19 @@
-define( ['jquery', './overlay', '../data', '../lib/shuffle'], function( $, overlay, data, shuffle ) {
+define( ['jquery', '../data', '../lib/shuffle'], function( $, data, shuffle ) {
     var data_array = Object.values(data),
-        overWorks = ['Cambridge', 'Norwich', 'London', 'Carlisle'],
+        overWorks  = ['Cambridge', 'Norwich', 'London', 'Carlisle'],
         underWorks = ['Cambridge', 'Surfleet', 'Beverley', 'Norwich', 'Westminster', 'Allendale', 'Kelso', 'London', 'Wells'],
-        $content_quiz = $( '#content_quiz' ),
+        $content_quiz    = $( '#content_quiz' ),
         $quiz_testMethod = $( '#quiz_testMethod' ),
-        $quiz_le2 = $( '#quiz_le li:first-child' ),
-        $quiz_le6 = $( '#quiz_le li:last-child' ),
-        $quiz_over = $( '#quiz_over' ),
+        $quiz_le2   = $( '#quiz_le li:first-child' ),
+        $quiz_le6   = $( '#quiz_le li:last-child' ),
+        $quiz_over  = $( '#quiz_over' ),
         $quiz_under = $( '#quiz_under' ),
-        $quiz_hl16 = $( '#quiz_hl li:first-child' ),
-        $quiz_hl36 = $( '#quiz_hl li:eq(1)' ),
-        $quiz_hl56 = $( '#quiz_hl li:last-child' );
+        $quiz_hl16  = $( '#quiz_hl li:first-child' ),
+        $quiz_hl36  = $( '#quiz_hl li:eq(1)' ),
+        $quiz_hl56  = $( '#quiz_hl li:last-child' ),
+        $quiz_errorFlash = $( '<div id="quiz_errorFlash">' );
+
+    $( document.body ).append( $quiz_errorFlash );
 
     var generateQuestion = function() {
         var method = data_array[Math.round(0.5 + (Math.random() * 41))-1];
@@ -55,6 +58,8 @@ define( ['jquery', './overlay', '../data', '../lib/shuffle'], function( $, overl
             }
             else if( $target_li.data('answer') === false ) {
                 $target_li.addClass( 'disabled' ).data( 'answer', undefined );
+                $quiz_errorFlash.removeClass( 'error' );
+                window.setTimeout( function() { $quiz_errorFlash.addClass( 'error' ); }, 50 );
             }
             if( $( '#content_quiz li.correct' ).length === 4 ) {
                 generateQuestion();

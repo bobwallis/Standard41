@@ -1,6 +1,6 @@
 define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/PlaceNotation'], function( $, overlay, data, RingingPractice, PlaceNotation ) {
     var $document = $( document ),
-        $window = $( window );
+        $window   = $( window );
 
     var addOrdinalIndicator = function( i ) {
         i = parseInt( i+'', 10 );
@@ -35,7 +35,7 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
 		// Stop the default event
 		e.preventDefault();
 		e.stopPropagation();
-        
+
         var option_type = $( 'input[name="practice_chooser_type"]:checked' ).val(),
             option_method, option_placeStart, option_leadOrCourse, option_title, option_notation, option_overlayMessages, option_thatsAll, option_rows;
 
@@ -88,7 +88,7 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
             height: Math.min( 400, $window.height() ),
             width: Math.min( 320, $window.width() )
         } );
-    
+
         // Show the practice interface
         $practice.css( 'transform-origin', '50% '+($( '#practice_chooser_go' ).offset().top - Math.max(0, ($window.height() - 400)/2) - $window.scrollTop() + 17.5)+'px' )
             .removeClass( 'open' );
@@ -106,7 +106,7 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
 			$practice_overflow.removeClass( 'open' );
 		}, 425 );
     };
-        
+
     $( '#practice_chooser_go button' ).on( 'click', openPractice );
 	$( '#overlay' ).on( 'click', closePractice );
 	$document.keyup( function( e ) { if( e.keyCode === 27 ) { closePractice(); } } );

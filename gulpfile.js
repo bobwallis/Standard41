@@ -151,4 +151,4 @@ function watch() {
 
 
 exports.default = gulp.series( gulp.parallel( appicon, androidicon, img, favicon, fonts, css, js, html ), compressBrotliAndGzip );
-exports.watch = watch;
+exports.watch   = watch;

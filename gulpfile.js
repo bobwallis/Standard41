@@ -6,7 +6,6 @@ var rename       = require( 'gulp-rename' );
 var mergeStream  = require( 'merge-stream' );
 var brotli       = require( 'gulp-brotli' );
 var gzip         = require( 'gulp-gzip' );
-var svg2png      = require( 'gulp-svg2png' );
 var less         = require( 'gulp-less' );
 var autoprefixer = require( 'gulp-autoprefixer' );
 var cleanCSS     = require( 'gulp-clean-css' );
@@ -20,34 +19,6 @@ var hypher       = require( 'gulp-hypher' );
 var h_pattern    = require( 'hyphenation.en-gb' );
 var htmlmin      = require( 'gulp-htmlmin' );
 var sourcemaps   = require( 'gulp-sourcemaps' );
-
-
-function appicon() {
-	var tasks = [70, 144, 150, 152, 180, 310].map( function( size ) {
-		return gulp.src( 'src/img/appicon.svg' )
-			.pipe( svg2png( size/63 ) )
-			.pipe( imagemin() )
-			.pipe( rename( function( path ) {
-				path.basename += '-'+size;
-			} ) )
-			.pipe( gulp.dest( DEST+'img/' ) );
-	} );
-	return mergeStream.apply( null, tasks );
-};
-
-
-function androidicon() {
-	var tasks = [192, 512].map( function( size ) {
-		return gulp.src( 'src/img/androidicon.svg' )
-			.pipe( svg2png( size/192 ) )
-			.pipe( imagemin() )
-			.pipe( rename( function( path ) {
-				path.basename += '-'+size;
-			} ) )
-			.pipe( gulp.dest( DEST+'img/' ) );
-	} );
-	return mergeStream.apply( null, tasks );
-};
 
 
 function favicon() {
@@ -73,14 +44,14 @@ function css() {
 		.pipe( autoprefixer() )
 		.pipe( rename( 'standard41.css' ) )
 		.pipe( cleanCSS( { keepSpecialComments: 0 } ) )
-		.pipe( gulp.dest( DEST+'css/' ) )
+		.pipe( gulp.dest( DEST+'css/' ) );
 };
 
 
 function img() {
 	return gulp.src( ['src/img/*.svg', 'src/img/*.png'] )
 		.pipe( imagemin() )
-		.pipe( gulp.dest( DEST+'img/' ) )
+		.pipe( gulp.dest( DEST+'img/' ) );
 };
 
 
@@ -110,7 +81,7 @@ function js() {
 		.pipe( sourcemaps.init() )
 		.pipe( uglify() )
 		.pipe( sourcemaps.write( '.' ) )
-		.pipe( gulp.dest( DEST+'js/' ) )
+		.pipe( gulp.dest( DEST+'js/' ) );
 };
 
 
@@ -125,16 +96,22 @@ function html() {
 		.pipe( typogr( { only: ['amp', 'widont', 'caps', 'smartypants'] } ) )
 		.pipe( uglifyInline() )
 		.pipe( htmlmin( { removeComments: true, collapseWhitespace: true } ) )
-		.pipe( gulp.dest( DEST ) )
+		.pipe( gulp.dest( DEST ) );
+};
+
+
+function manifest() {
+	return gulp.src( ['src/manifest.json'] )
+		.pipe( gulp.dest( DEST ) );
 };
 
 
 function compressBrotliAndGzip() {
 	return mergeStream(
-		gulp.src( [DEST+'/**/*.svg', DEST+'/**/*.html', DEST+'/**/*.js', DEST+'/**/*.css', DEST+'/**/*.xml'] )
+		gulp.src( [DEST+'/**/*.svg', DEST+'/**/*.html', DEST+'/**/*.js', DEST+'/**/*.css', DEST+'/**/*.xml', DEST+'/**/*.json'] )
 			.pipe( brotli() )
 			.pipe( gulp.dest( DEST+'/' ) ),
-		gulp.src( [DEST+'/**/*.svg', DEST+'/**/*.html', DEST+'/**/*.js', DEST+'/**/*.css', DEST+'/**/*.xml'] )
+		gulp.src( [DEST+'/**/*.svg', DEST+'/**/*.html', DEST+'/**/*.js', DEST+'/**/*.css', DEST+'/**/*.xml', DEST+'/**/*.json'] )
 			.pipe( gzip({ gzipOptions: { level: 9 } }) )
 			.pipe( gulp.dest( DEST+'/' ) )
 	);
@@ -150,5 +127,5 @@ function watch() {
 };
 
 
-exports.default = gulp.series( gulp.parallel( appicon, androidicon, img, favicon, fonts, css, js, html ), compressBrotliAndGzip );
+exports.default = gulp.series( gulp.parallel( img, favicon, fonts, css, js, html, manifest ), compressBrotliAndGzip );
 exports.watch   = watch;

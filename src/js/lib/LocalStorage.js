@@ -1,5 +1,5 @@
 define( ['Modernizr'], function( Modernizr ) {
-	var prefix = 'blueline_',
+	var prefix = 's41_',
 		dataAge = document.getElementsByTagName('html')[0].getAttribute( 'data-age' ),
 		LocalStorage = {
 			age: parseInt( dataAge )

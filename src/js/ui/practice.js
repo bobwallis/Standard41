@@ -1,4 +1,4 @@
-define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/PlaceNotation'], function( $, overlay, data, RingingPractice, PlaceNotation ) {
+define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/PlaceNotation', '../lib/LocalStorage'], function( $, overlay, data, RingingPractice, PlaceNotation, localStorage ) {
     var $document = $( document ),
         $window   = $( window );
 
@@ -60,7 +60,9 @@ define( ['jquery', './overlay', '../data', '../lib/RingingPractice', '../lib/Pla
             option_thatsAll = "That's all";
             option_rows = 24*250;
             for( var i = 0; i < 250; ++i ) {
-                option_method = $( '#practice_chooser_method option:eq('+Math.floor(Math.random() * 41)+')' ).val();
+                do {
+                    option_method = $( '#practice_chooser_method option:eq('+Math.floor(Math.random() * 41)+')' ).val();
+                } while( !localStorage.getSetting( 'setting_enable_'+data[option_method].id, true ) );
                 option_notation = option_notation.concat( PlaceNotation.parse( PlaceNotation.expand( data[option_method].notation, 6 ), 6 ) );
                 option_overlayMessages[(i*24)+1] = data[option_method].name.replace( ' Surprise Minor', '' );
             }

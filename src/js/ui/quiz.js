@@ -1,4 +1,4 @@
-define( ['jquery', '../data', '../lib/shuffle'], function( $, data, shuffle ) {
+define( ['jquery', '../data', '../lib/shuffle', '../lib/LocalStorage'], function( $, data, shuffle, localStorage ) {
     var data_array = Object.values(data),
         overWorks  = ['Cambridge', 'Norwich', 'London', 'Carlisle'],
         underWorks = ['Cambridge', 'Surfleet', 'Beverley', 'Norwich', 'Westminster', 'Allendale', 'Kelso', 'London', 'Wells'],
@@ -16,7 +16,10 @@ define( ['jquery', '../data', '../lib/shuffle'], function( $, data, shuffle ) {
     $( document.body ).append( $quiz_errorFlash );
 
     var generateQuestion = function() {
-        var method = data_array[Math.round(0.5 + (Math.random() * 41))-1];
+        var method;
+        do {
+            method = data_array[Math.round(0.5 + (Math.random() * 41))-1];
+        } while( !localStorage.getSetting( 'setting_enable_'+method.id, true ) );
 
         $quiz_testMethod.html( method.short_name );
 

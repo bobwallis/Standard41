@@ -1,0 +1,22 @@
+{
+    "lang": "en",
+    "name": "41 Surprise Minor",
+    "short_name": "41 Surprise Minor",
+    "icons": [
+      {
+        "src": "/img/androidicon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/img/androidicon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "scope": "/",
+    "start_url": "/",
+    "background_color": "#002856",
+    "theme_color": "#002856",
+    "display": "standalone"
+  }

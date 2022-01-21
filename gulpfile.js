@@ -119,7 +119,7 @@ function compressBrotliAndGzip() {
 
 
 function watch() {
-	gulp.watch( ['src/img/appicon.svg'], appicon );
+	gulp.watch( ['src/img/*'], img );
 	gulp.watch( ['src/img/favicon.*'], favicon );
 	gulp.watch( ['src/css/**/*.less', 'src/css/**/*.css'], css );
 	gulp.watch( ['src/js/**/*.js'], js );

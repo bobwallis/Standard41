@@ -39,18 +39,13 @@ define( ['jquery', '../data', './overlay'], function( $, data, overlay ) {
 			overlay.show();
 			// Tick the event loop so the changes process
 			window.requestAnimationFrame( function() {
-				// Calculate the appropriate end-state width/height for the blueline
-				var width  = Math.min( $window.width(), 610 ),
-					height = width*435/610;
-				// Scale up
-				$blueline.css( {
-						'transition-property': 'all',
-						transform: 'scale('+(width/610)+','+(height/435)+') translate('+Math.round((610/width)*(($window.width() - width )/ 2 - $cell_offset.left))+'px,'+Math.round((435/height)*(($window.height() - height) / 2 - $cell_offset.top))+'px)',
-					} )
-					.addClass( 'open' );
+				positionBlueline();
+				$blueline.addClass( 'open' );
 			} );
+
 		}
 	};
+
 	var closeBlueline = function() {
 		$blueline.removeClass( 'open' )
 			.css( 'transform', 'scale('+($cell_width/610)+','+($cell_height/435)+') translate(0,0)' );
@@ -60,7 +55,24 @@ define( ['jquery', '../data', './overlay'], function( $, data, overlay ) {
 			$blueline_overflow.hide();
 		}, 400 );
 	};
+
+	var positionBlueline = function() {
+		// Calculate the appropriate end-state width/height for the blueline
+		var width  = Math.min( $window.width(), 610 ),
+			height = width*435/610;
+		// Scale up
+		$blueline.css( {
+			'transition-property': 'all',
+			transform: 'scale('+(width/610)+','+(height/435)+') translate('+Math.round((610/width)*(($window.width() - width )/ 2 - $cell_offset.left))+'px,'+Math.round((435/height)*(($window.height() - height) / 2 - $cell_offset.top))+'px)',
+		} );
+	};
+
 	$( '#method_table' ).on( 'click', 'a, td', openBlueline );
 	$( '#overlay, #blueline_overflow' ).on( 'click', closeBlueline );
 	$document.keyup( function( e ) { if( e.keyCode === 27 ) { closeBlueline(); } } );
+	$window.resize( function() {
+		if( $blueline.hasClass( 'open' ) ) {
+			positionBlueline();
+		}
+	} );
 } );
